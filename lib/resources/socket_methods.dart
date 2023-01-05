@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tic_tac_toe/provider/room_data_provider.dart';
 import 'package:tic_tac_toe/resources/game_methods.dart';
 import 'package:tic_tac_toe/resources/socket_client.dart';
 import 'package:tic_tac_toe/screens/game_screen.dart';
+import 'package:tic_tac_toe/screens/main_menu_screen.dart';
 import 'package:tic_tac_toe/utils/utils.dart';
 import 'package:provider/provider.dart';
 import 'package:socket_io_client/socket_io_client.dart';
@@ -52,6 +54,10 @@ class SocketMethods {
     _socketClient.on('joinRoomSuccess', (room) {
       Provider.of<RoomDataProvider>(context, listen: false)
           .updateRoomData(room);
+      Fluttertoast.showToast(
+          msg: "Five points for a win",
+          toastLength: Toast.LENGTH_LONG,
+          backgroundColor: Colors.blue);
       Navigator.pushNamed(context, GameScreen.routeName);
     });
   }
@@ -108,8 +114,12 @@ class SocketMethods {
 
   void endGameListener(BuildContext context) {
     _socketClient.on('endGame', (playerData) {
-      showGameDialog(context, '${playerData['nickname']} won the game!');
-      Navigator.popUntil(context, (route) => false);
+      Fluttertoast.showToast(
+          msg: "${playerData['nickname']} won the game!",
+          toastLength: Toast.LENGTH_LONG,
+          backgroundColor: Colors.blue);
+      Navigator.popUntil(
+          context, ModalRoute.withName(MainMenuScreen.routeName));
     });
   }
 }

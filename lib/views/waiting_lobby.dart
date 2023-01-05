@@ -30,17 +30,19 @@ class _WaitingLobbyState extends State<WaitingLobby> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text('Waiting for a player to join...'),
-        const SizedBox(height: 20),
-        CustomTextField(
-          controller: roomIdController,
-          hintText: '',
-          isReadOnly: true,
-        ),
-      ],
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text('Waiting for a player to join...'),
+          const SizedBox(height: 20),
+          CustomTextField(
+            controller: roomIdController,
+            hintText: '',
+            isReadOnly: true,
+          ),
+        ],
+      ),
     );
   }
 }

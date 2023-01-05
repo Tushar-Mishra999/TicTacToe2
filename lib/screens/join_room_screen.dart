@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/resources/socket_methods.dart';
-import 'package:tic_tac_toe/responsive/responsive.dart';
 import 'package:tic_tac_toe/widgets/custom_button.dart';
 import 'package:tic_tac_toe/widgets/custom_text.dart';
 import 'package:tic_tac_toe/widgets/custom_textfield.dart';
@@ -38,7 +37,8 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: Responsive(
+      resizeToAvoidBottomInset: false,
+      body: Center(
         child: Container(
           margin: const EdgeInsets.symmetric(
             horizontal: 20,

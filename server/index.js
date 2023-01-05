@@ -1,4 +1,5 @@
 // importing modules
+const { Console } = require("console");
 const express = require("express");
 const http = require("http");
 const mongoose = require("mongoose");
@@ -13,14 +14,13 @@ var io = require("socket.io")(server);
 app.use(express.json());
 
 const DB =
-  "mongodb+srv://rivaan:test123@cluster0.rmhtu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  "mongodb+srv://Tushar:Tushar1612@cluster0.izmxq7y.mongodb.net/?retryWrites=true&w=majority";
 
 io.on("connection", (socket) => {
   console.log("connected!");
   socket.on("createRoom", async ({ nickname }) => {
-    console.log(nickname);
     try {
-      // room is created
+      // room is created 
       let room = new Room();
       let player = {
         socketID: socket.id,
@@ -30,7 +30,6 @@ io.on("connection", (socket) => {
       room.players.push(player);
       room.turn = player;
       room = await room.save();
-      console.log(room);
       const roomId = room._id.toString();
 
       socket.join(roomId);
@@ -99,10 +98,14 @@ io.on("connection", (socket) => {
 
   socket.on("winner", async ({ winnerSocketId, roomId }) => {
     try {
+      if(socket.id!=winnerSocketId){return ;}
       let room = await Room.findById(roomId);
       let player = room.players.find(
         (playerr) => playerr.socketID == winnerSocketId
       );
+      console.log(player.playerType);
+      console.log("previous");
+      console.log(player.points)
       player.points += 1;
       room = await room.save();
 

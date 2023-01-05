@@ -13,13 +13,16 @@ class CustomText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: TextStyle(
-        color: Colors.white,
-        fontWeight: FontWeight.bold,
-        fontSize: fontSize,
-        shadows: shadows,
+    return Padding(
+      padding: const EdgeInsets.only(left: 12.0),
+      child: Text(
+        text,
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+          fontSize: fontSize,
+          shadows: shadows,
+        ),
       ),
     );
   }

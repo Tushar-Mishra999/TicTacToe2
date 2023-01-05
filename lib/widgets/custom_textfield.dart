@@ -15,7 +15,9 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Container(
+      width: size.width * 0.8,
       decoration: const BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -26,6 +28,7 @@ class CustomTextField extends StatelessWidget {
         ],
       ),
       child: TextField(
+        autofocus: false,
         readOnly: isReadOnly,
         controller: controller,
         decoration: InputDecoration(

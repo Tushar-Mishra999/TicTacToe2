@@ -12,30 +12,38 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
+    final size = MediaQuery.of(context).size;
 
-    return Container(
-      decoration: const BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.blue,
-            blurRadius: 5,
-            spreadRadius: 0,
-          )
-        ],
-      ),
-      child: ElevatedButton(
-        onPressed: onTap,
-        child: Text(
-          text,
-          style: const TextStyle(
-            fontSize: 16,
-          ),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: size.width * 0.8,
+        height: size.height * 0.07,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color(0xff2CD2F8),
+                Color(0xff0C5CA4),
+                Color(0xff01245D),
+              ]),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.blue,
+              blurRadius: 5,
+              spreadRadius: 0,
+            )
+          ],
         ),
-        style: ElevatedButton.styleFrom(
-          minimumSize: Size(
-            width,
-            50,
+        child: Center(
+          child: Text(
+            text,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
       ),
