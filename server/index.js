@@ -26,16 +26,16 @@ io.on("connection", (socket) => {
         nickname,
         playerType: "X",
       };
-      room.players.push(player);
+      await room.players.push(player);
       room.turn = player;
       room = await room.save();
       const roomId = room._id.toString();
 
-      socket.join(roomId);
+      await socket.join(roomId);
       // io -> send data to everyone
       // socket -> sending data to yourself
       console.log('room created');
-      io.to(roomId).emit("createRoomSuccess", room);
+      await io.to(roomId).emit("createRoomSuccess", room);
     } catch (e) {
       console.log(e);
     }
@@ -44,7 +44,7 @@ io.on("connection", (socket) => {
   socket.on("joinRoom", async ({ nickname, roomId }) => {
     try {
       if (!roomId.match(/^[0-9a-fA-F]{24}$/)) {
-        socket.emit("errorOccurred", "Please enter a valid room ID.");
+        await socket.emit("errorOccurred", "Please enter a valid room ID.");
         return;
       }
       let room = await Room.findById(roomId);
@@ -64,7 +64,7 @@ io.on("connection", (socket) => {
         await io.to(roomId).emit("joinRoomSuccess", room);
         await io.to(roomId).emit("updateRoom", room);
       } else {
-        socket.emit(
+        await socket.emit(
           "errorOccurred",
           "The game is in progress, try again later."
         );
@@ -87,7 +87,7 @@ io.on("connection", (socket) => {
         room.turnIndex = 0;
       }
       room = await room.save();
-      io.to(roomId).emit("tapped", {
+      await io.to(roomId).emit("tapped", {
         index,
         choice,
         room,
@@ -108,9 +108,9 @@ io.on("connection", (socket) => {
       room = await room.save();
 
       if (player.points >= room.maxRounds) {
-        io.to(roomId).emit("endGame", player);
+        await io.to(roomId).emit("endGame", player);
       } else {
-        io.to(roomId).emit("pointIncrease", player);
+        await io.to(roomId).emit("pointIncrease", player);
       }
     } catch (e) {
       console.log(e);

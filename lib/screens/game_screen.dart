@@ -26,42 +26,7 @@ class _GameScreenState extends State<GameScreen> {
     _socketMethods.endGameListener(context);
   }
 
-  void showInfo(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return Dialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            child: Container(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text(
-                    'Rules',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(5),
-                    child: Text(
-                      "5 points for a win",
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue),
-                      child: const Text('Close'))
-                ],
-              ),
-            ),
-          );
-        });
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -74,16 +39,6 @@ class _GameScreenState extends State<GameScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Row(
-                   children: [
-                     const Spacer(),
-                    IconButton(
-              onPressed: () {
-                showInfo(context);
-              },
-              icon: const Icon(Icons.info_outline))
-                   ],
-                  ),
                   const Scoreboard(),
                   const TicTacToeBoard(),
                   Text(
