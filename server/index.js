@@ -103,9 +103,6 @@ io.on("connection", (socket) => {
       let player = room.players.find(
         (playerr) => playerr.socketID == winnerSocketId
       );
-      console.log(player.playerType);
-      console.log("previous");
-      console.log(player.points)
       player.points += 1;
       room = await room.save();
 
