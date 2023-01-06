@@ -60,8 +60,9 @@ io.on("connection", (socket) => {
         room.isJoin = false;
         room = await room.save();
         console.log('2nd player joins');
-        await io.to(roomId).emit("joinRoomSuccess", room);
         await io.to(roomId).emit("updatePlayers", room.players);
+        await io.to(roomId).emit("joinRoomSuccess", room);
+        
         await io.to(roomId).emit("updateRoom", room);
       } else {
         socket.emit(
