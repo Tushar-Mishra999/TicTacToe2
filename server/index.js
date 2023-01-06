@@ -55,14 +55,13 @@ io.on("connection", (socket) => {
           socketID: socket.id,
           playerType: "O",
         };
-        socket.join(roomId);
-        room.players.push(player);
+        await socket.join(roomId);
+        await room.players.push(player);
         room.isJoin = false;
         room = await room.save();
         console.log('2nd player joins');
         await io.to(roomId).emit("updatePlayers", room.players);
         await io.to(roomId).emit("joinRoomSuccess", room);
-        
         await io.to(roomId).emit("updateRoom", room);
       } else {
         socket.emit(
