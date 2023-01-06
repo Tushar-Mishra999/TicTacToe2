@@ -54,10 +54,7 @@ class SocketMethods {
     _socketClient.on('joinRoomSuccess', (room) {
       Provider.of<RoomDataProvider>(context, listen: false)
           .updateRoomData(room);
-      Fluttertoast.showToast(
-          msg: "Five points for a win",
-          toastLength: Toast.LENGTH_LONG,
-          backgroundColor: Colors.blue);
+      
       Navigator.pushNamed(context, GameScreen.routeName);
     });
   }

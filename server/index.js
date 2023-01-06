@@ -17,7 +17,6 @@ const DB =
   "mongodb+srv://Tushar:Tushar1612@cluster0.izmxq7y.mongodb.net/?retryWrites=true&w=majority";
 
 io.on("connection", (socket) => {
-  console.log("connected!");
   socket.on("createRoom", async ({ nickname }) => {
     try {
       // room is created 
@@ -35,6 +34,7 @@ io.on("connection", (socket) => {
       socket.join(roomId);
       // io -> send data to everyone
       // socket -> sending data to yourself
+      console.log('room created');
       io.to(roomId).emit("createRoomSuccess", room);
     } catch (e) {
       console.log(e);
@@ -59,9 +59,10 @@ io.on("connection", (socket) => {
         room.players.push(player);
         room.isJoin = false;
         room = await room.save();
-        io.to(roomId).emit("joinRoomSuccess", room);
-        io.to(roomId).emit("updatePlayers", room.players);
-        io.to(roomId).emit("updateRoom", room);
+        console.log('2nd player joins');
+        await io.to(roomId).emit("joinRoomSuccess", room);
+        await io.to(roomId).emit("updatePlayers", room.players);
+        await io.to(roomId).emit("updateRoom", room);
       } else {
         socket.emit(
           "errorOccurred",

@@ -19,14 +19,14 @@ class GameMethods {
         roomDataProvider.displayElements[0] != '') {
       winner = roomDataProvider.displayElements[0];
     }
-    if (roomDataProvider.displayElements[3] ==
+    else if (roomDataProvider.displayElements[3] ==
             roomDataProvider.displayElements[4] &&
         roomDataProvider.displayElements[3] ==
             roomDataProvider.displayElements[5] &&
         roomDataProvider.displayElements[3] != '') {
       winner = roomDataProvider.displayElements[3];
     }
-    if (roomDataProvider.displayElements[6] ==
+   else if (roomDataProvider.displayElements[6] ==
             roomDataProvider.displayElements[7] &&
         roomDataProvider.displayElements[6] ==
             roomDataProvider.displayElements[8] &&
@@ -35,21 +35,21 @@ class GameMethods {
     }
 
     // Checking Column
-    if (roomDataProvider.displayElements[0] ==
+   else if (roomDataProvider.displayElements[0] ==
             roomDataProvider.displayElements[3] &&
         roomDataProvider.displayElements[0] ==
             roomDataProvider.displayElements[6] &&
         roomDataProvider.displayElements[0] != '') {
       winner = roomDataProvider.displayElements[0];
     }
-    if (roomDataProvider.displayElements[1] ==
+    else if (roomDataProvider.displayElements[1] ==
             roomDataProvider.displayElements[4] &&
         roomDataProvider.displayElements[1] ==
             roomDataProvider.displayElements[7] &&
         roomDataProvider.displayElements[1] != '') {
       winner = roomDataProvider.displayElements[1];
     }
-    if (roomDataProvider.displayElements[2] ==
+    else if (roomDataProvider.displayElements[2] ==
             roomDataProvider.displayElements[5] &&
         roomDataProvider.displayElements[2] ==
             roomDataProvider.displayElements[8] &&
@@ -58,14 +58,14 @@ class GameMethods {
     }
 
     // Checking Diagonal
-    if (roomDataProvider.displayElements[0] ==
+    else if (roomDataProvider.displayElements[0] ==
             roomDataProvider.displayElements[4] &&
         roomDataProvider.displayElements[0] ==
             roomDataProvider.displayElements[8] &&
         roomDataProvider.displayElements[0] != '') {
       winner = roomDataProvider.displayElements[0];
     }
-    if (roomDataProvider.displayElements[2] ==
+    else if (roomDataProvider.displayElements[2] ==
             roomDataProvider.displayElements[4] &&
         roomDataProvider.displayElements[2] ==
             roomDataProvider.displayElements[6] &&
