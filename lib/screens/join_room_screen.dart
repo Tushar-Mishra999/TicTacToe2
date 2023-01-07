@@ -25,12 +25,12 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
     _socketMethods.updatePlayersStateListener(context);
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    _gameIdController.dispose();
-    _nameController.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   _gameIdController.dispose();
+  //   _nameController.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {

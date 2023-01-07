@@ -23,6 +23,14 @@ class SocketMethods {
     }
   }
 
+  void createRoomSuccessListener(BuildContext context) {
+    _socketClient.on('createRoomSuccess', (room) {
+      Provider.of<RoomDataProvider>(context, listen: false)
+          .updateRoomData(room);
+      Navigator.pushReplacementNamed(context, GameScreen.routeName);
+    });
+  }
+
   void joinRoom(String nickname, String roomId) {
     if (nickname.isNotEmpty && roomId.isNotEmpty) {
       _socketClient.emit('joinRoom', {
@@ -41,15 +49,6 @@ class SocketMethods {
     }
   }
 
-  // LISTENERS
-  void createRoomSuccessListener(BuildContext context) {
-    _socketClient.on('createRoomSuccess', (room) {
-      Provider.of<RoomDataProvider>(context, listen: false)
-          .updateRoomData(room);
-      Navigator.pushNamed(context, GameScreen.routeName);
-    });
-  }
-
   void joinRoomSuccessListener(BuildContext context) {
     _socketClient.on('joinRoomSuccess', (room) {
       Provider.of<RoomDataProvider>(context, listen: false)
@@ -58,7 +57,7 @@ class SocketMethods {
           msg: "5 points for a win",
           backgroundColor: Colors.blue,
           toastLength: Toast.LENGTH_LONG);
-      Navigator.pushNamed(context, GameScreen.routeName);
+      Navigator.pushReplacementNamed(context, GameScreen.routeName);
     });
   }
 
@@ -118,8 +117,8 @@ class SocketMethods {
           msg: "${playerData['nickname']} won the game!",
           toastLength: Toast.LENGTH_LONG,
           backgroundColor: Colors.blue);
-      Navigator.popUntil(
-          context, ModalRoute.withName(MainMenuScreen.routeName));
+      Future.delayed(const Duration(seconds: 2));
+      Navigator.pop(context);
     });
   }
 }

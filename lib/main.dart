@@ -8,7 +8,11 @@ import 'package:tic_tac_toe/utils/colors.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(
+     providers:[
+      ChangeNotifierProvider(create: (context)=>RoomDataProvider()),
+    ],
+    child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -16,22 +20,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => RoomDataProvider(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Tic Tac Toe',
-        theme: ThemeData.dark().copyWith(
-          scaffoldBackgroundColor: bgColor,
-        ),
-        routes: {
-          MainMenuScreen.routeName: (context) => const MainMenuScreen(),
-          JoinRoomScreen.routeName: (context) => const JoinRoomScreen(),
-          CreateRoomScreen.routeName: (context) => const CreateRoomScreen(),
-          GameScreen.routeName: (context) => const GameScreen(),
-        },
-        initialRoute: MainMenuScreen.routeName,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Tic Tac Toe',
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: bgColor,
       ),
+      routes: {
+        MainMenuScreen.routeName: (context) =>  MainMenuScreen(),
+        JoinRoomScreen.routeName: (context) =>  JoinRoomScreen(),
+        CreateRoomScreen.routeName: (context) =>  CreateRoomScreen(),
+        GameScreen.routeName: (context) =>  GameScreen(),
+      },
+      initialRoute: MainMenuScreen.routeName,
     );
   }
 }

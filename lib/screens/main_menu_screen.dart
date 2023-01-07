@@ -8,13 +8,12 @@ import '../widgets/custom_text.dart';
 class MainMenuScreen extends StatelessWidget {
   static String routeName = '/main-menu';
   const MainMenuScreen({Key? key}) : super(key: key);
-
   void createRoom(BuildContext context) {
-    Navigator.pushNamed(context, CreateRoomScreen.routeName);
+    Navigator.pushReplacementNamed(context, CreateRoomScreen.routeName);
   }
 
   void joinRoom(BuildContext context) {
-    Navigator.pushNamed(context, JoinRoomScreen.routeName);
+    Navigator.pushReplacementNamed(context, JoinRoomScreen.routeName);
   }
 
   @override

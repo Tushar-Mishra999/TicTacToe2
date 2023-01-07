@@ -26,12 +26,11 @@ class _GameScreenState extends State<GameScreen> {
     _socketMethods.endGameListener(context);
   }
 
-  
 
   @override
   Widget build(BuildContext context) {
-    RoomDataProvider roomDataProvider = Provider.of<RoomDataProvider>(context);
-
+   RoomDataProvider roomDataProvider = Provider.of<RoomDataProvider>(context);
+  
     return Scaffold(
       body: roomDataProvider.roomData['isJoin']
           ? const WaitingLobby()
