@@ -53,10 +53,6 @@ class SocketMethods {
     _socketClient.on('joinRoomSuccess', (room) {
       Provider.of<RoomDataProvider>(context, listen: false)
           .updateRoomData(room);
-      Fluttertoast.showToast(
-          msg: "5 points for a win",
-          backgroundColor: Colors.blue,
-          toastLength: Toast.LENGTH_LONG);
       Navigator.pushReplacementNamed(context, GameScreen.routeName);
     });
   }
@@ -79,6 +75,10 @@ class SocketMethods {
   }
 
   void updateRoomListener(BuildContext context) {
+    Fluttertoast.showToast(
+          msg: "5 points for a win",
+          backgroundColor: const Color(0xff01245D),
+          toastLength: Toast.LENGTH_LONG);
     _socketClient.on('updateRoom', (data) {
       Provider.of<RoomDataProvider>(context, listen: false)
           .updateRoomData(data);
@@ -116,7 +116,7 @@ class SocketMethods {
       Fluttertoast.showToast(
           msg: "${playerData['nickname']} won the game!",
           toastLength: Toast.LENGTH_LONG,
-          backgroundColor: Colors.blue);
+          backgroundColor: const Color(0xff01245D));
       Future.delayed(const Duration(seconds: 2));
       Navigator.pop(context);
     });

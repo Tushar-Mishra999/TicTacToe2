@@ -3,7 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tic_tac_toe/resources/game_methods.dart';
 
 void showSnackBar(BuildContext context, String content) {
-  Fluttertoast.showToast(msg: content);
+  Fluttertoast.showToast(msg: content,backgroundColor:const Color(0xff01245D));
 }
 
 void showGameDialog(BuildContext context, String text) {
